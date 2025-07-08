@@ -1,7 +1,7 @@
 import orderModel from "./models/order.model.js";
 
 class OrderDAO {
-  async getOrder() {
+  async getOrders() {
     try {
       let result = await orderModel.find({});
       return result;

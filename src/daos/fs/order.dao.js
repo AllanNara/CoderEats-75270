@@ -3,7 +3,7 @@ import fs from "fs"
 const fsPromises = fs.promises
 
 class OrderDAO {
-  async getOrder() {}
+  async getOrders() {}
 
   async getOrderById(oid) {}
 

@@ -11,7 +11,10 @@ const userSchema = new Schema({
     unique: true,
     index: true,
   },
-  role: String,
+  role: {
+    type: String,
+    default: "user"
+  },
   orders: [
     {
       type: SchemaTypes.ObjectId,

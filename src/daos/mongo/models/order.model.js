@@ -10,6 +10,7 @@ const orderSchema = new Schema({
   },
   products: [],
   totalPrice: Number,
+  status: String,
   business: {
     type: SchemaTypes.ObjectId,
     ref: "business"

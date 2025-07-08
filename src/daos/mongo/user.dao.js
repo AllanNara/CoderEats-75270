@@ -1,7 +1,7 @@
 import userModel from "./models/user.model.js";
 
 class UserDAO {
-  async getUser() {
+  async getUsers() {
     try {
       let result = await userModel.find({});
       return result;
@@ -11,9 +11,9 @@ class UserDAO {
     }
   }
 
-  async getUserById(bid) {
+  async getUserById(uid) {
     try {
-      let result = await userModel.findOne({ _id: bid });
+      let result = await userModel.findOne({ _id: uid }).populate("orders");
       return result;
     } catch (error) {
       console.error({ error });
@@ -31,9 +31,9 @@ class UserDAO {
     }
   }
 
-  async updateUser(bid, obj) {
+  async updateUser(uid, obj) {
     try {
-      let result = await userModel.updateOne({ _id: bid }, { $set: obj });
+      let result = await userModel.updateOne({ _id: uid }, { $set: obj });
       return result;
     } catch (error) {
       console.error({ error });
@@ -42,4 +42,4 @@ class UserDAO {
   }
 }
 
-export default userDAO
+export default UserDAO
