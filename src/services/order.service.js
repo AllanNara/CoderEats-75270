@@ -1,7 +1,6 @@
 import BusinessDAO from "../daos/mongo/business.dao.js";
 import UserDAO from "../daos/mongo/user.dao.js";
-// import OrderDAO from "../daos/mongo/order.dao.js";
-import OrderDAO from "../daos/fs/order.dao.js"
+import OrderDAO from "../daos/mongo/order.dao.js";
 
 const businessDAO = new BusinessDAO();
 const userDAO = new UserDAO();
@@ -20,11 +19,16 @@ class OrderService {
   async createOrder(uid, bid, products) {
     const user = await userDAO.getUserById(uid);
     const business = await businessDAO.getBusinessById(bid);
+    if(!user || !business) {
+      console.log("Error on OrderService (createOrder fn)")
+      return { error: true, type: 404 }
+    }
     const actualOrder = business.products.filter((pr) =>
       products.includes(pr.id),
     );
     const totalPrice = actualOrder.reduce((acc, prev) => {
-      acc += prev.price;
+      const price = parseInt(prev.price);
+      acc += price;
       return acc;
     }, 0);
     const orderNumber = Date.now() + Math.floor(Math.random() * 10000 + 1);
@@ -38,11 +42,17 @@ class OrderService {
       totalPrice,
     };
 
-    const orderResult = await orderDAO.createOrder(order);
+    const orderResult = await orderDAO.saveOrder(order);
     user.orders.push(orderResult._id);
-    const response = await userDAO.updateUser(user._id, user);
+    const updatedUser = await userDAO.updateUser(user._id, user);
 
-    return response;
+    if(!orderResult || !updatedUser) {
+      console.log("Error on OrderService (createOrder fn)")
+      return null
+    }
+
+
+    return orderResult;
   }
 
   async resolveOrder(oid, resolve) {

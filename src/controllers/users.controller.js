@@ -4,7 +4,7 @@ const userService = new UserService()
 
 class UserController {
   async getUsers(req, res) {
-    const users = userService.getAll();
+    const users = await userService.getAll();
     res.json({ status: "success", users }) 
   }
 
@@ -24,7 +24,7 @@ class UserController {
 
   async getUserById(req, res) {
     const uid = req.params.uid
-    const user = userService.getUserById(uid)
+    const user = await userService.getById(uid)
     if(!user) {
       return res.status(404).json({ status: "error", message: "User not found" })
     }
