@@ -1,0 +1,332 @@
+{
+	"info": {
+		"_postman_id": "2bcb9c7c-7b5f-4fca-8582-fc5acc4ef529",
+		"name": "CoderEats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20469867"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET /",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /:uid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/:uid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "686d90033a104c53b41fd3bd"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomFullName}}\",\n    \"email\": \"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Business",
+			"item": [
+				{
+					"name": "GET /",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/business/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"business",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /:bid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/business/:bid?=931&=829&=285",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"business",
+								":bid"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "931"
+								},
+								{
+									"key": null,
+									"value": "829"
+								},
+								{
+									"key": null,
+									"value": "285"
+								}
+							],
+							"variable": [
+								{
+									"key": "bid",
+									"value": "686d90de3a104c53b41fd3c9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomCompanyName}}\",\n    \"products\": [\n        { \"id\": 1, \"product\": \"{{$randomProduct}}\", \"price\": \"{{$randomPrice}}\"},\n        { \"id\": 2, \"product\": \"{{$randomProduct}}\", \"price\": \"{{$randomPrice}}\"},\n        { \"id\": 3, \"product\": \"{{$randomProduct}}\", \"price\": \"{{$randomPrice}}\"},\n        { \"id\": 4, \"product\": \"{{$randomProduct}}\", \"price\": \"{{$randomPrice}}\"},\n        { \"id\": 5, \"product\": \"{{$randomProduct}}\", \"price\": \"{{$randomPrice}}\"}\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/business/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"business",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /:bid/product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": {\n        \"id\": \"{{$randomInt}}\",\n        \"product\": \"{{$randomProduct}}\", \n        \"price\": \"{{$randomPrice}}\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/business/:bid/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"business",
+								":bid",
+								"product"
+							],
+							"variable": [
+								{
+									"key": "bid",
+									"value": "686d90de3a104c53b41fd3c9"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "GET /",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orders/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /:oid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orders/:oid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								":oid"
+							],
+							"variable": [
+								{
+									"key": "oid",
+									"value": "686d92d1feee41761c0f1e25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": \"686d90033a104c53b41fd3bd\",\n    \"business\": \"686d90de3a104c53b41fd3c9\",\n    \"products\": [1, 3, 5]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/orders/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /:oid",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/orders/:oid?resolve=complete",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"orders",
+								":oid"
+							],
+							"query": [
+								{
+									"key": "resolve",
+									"value": "complete"
+								}
+							],
+							"variable": [
+								{
+									"key": "oid",
+									"value": "686d92d1feee41761c0f1e25"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
