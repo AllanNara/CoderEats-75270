@@ -1,3 +1,4 @@
+import UserDTO from "../dtos/UserDTO.js";
 import UserService from "../services/user.service.js"
 
 const userService = new UserService()
@@ -9,17 +10,17 @@ class UserController {
   }
 
   async saveUser(req, res) {
-    const { name, email } = req.body
-    if(!name || !email) {
+    const { first_name, last_name, email } = req.body
+    if(!first_name || !last_name || !email) {
       return res.status(400).json({ status: "error", message: "Missing fields" });
     }
 
-    const response = await userService.createUser({ name, email })
+    const response = await userService.createUser({ first_name, last_name, email })
     if(!response) {
       return res.status(500).json({ status: "error", message: "View console" }) 
     }
 
-    res.status(201).json({ status: "created", payload: response })
+    res.status(201).json({ status: "created", payload: new UserDTO(response) })
   }
 
   async getUserById(req, res) {

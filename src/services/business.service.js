@@ -1,24 +1,24 @@
-import BusinessDAO from "../daos/mongo/business.dao.js"
+import BusinessRepository from "../repositories/business.repository";
 
-const businessDAO = new BusinessDAO();
+const businessRepository = new BusinessRepository()
 
 class BusinessService {
   async getAll() {
-    return await businessDAO.getBusiness();
+    return await businessRepository.getBusiness();
   }
 
   async getById(bid) {
-    return await businessDAO.getBusinessById(bid)
+    return await businessRepository.getBusinessById(bid)
   }
 
   async createBusiness(body) {
-    return await businessDAO.saveBusiness(body)
+    return await businessRepository.saveBusiness(body)
   }
 
   async addNewProduct(bid, prod) {
-    const business = await businessDAO.getBusinessById(bid);
+    const business = await businessRepository.getBusinessById(bid);
     business.products.push(prod);
-    let response = await businessDAO.updateBusiness(bid, business);
+    let response = await businessRepository.updateBusiness(bid, business);
     return response ? { updated: true } : { updated: false, error: "view console" } 
   }
 }

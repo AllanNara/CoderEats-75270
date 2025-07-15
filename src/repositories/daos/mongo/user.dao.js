@@ -21,10 +21,11 @@ class UserDAO {
     }
   }
 
-  async saveUser(user) {
+  async saveUser(userObj) {
     try {
-      let result = await userModel.create(user);
-      return result;
+      let user = await userModel.create(userObj);
+      console.log({...user})
+      return user;
     } catch (error) {
       console.error({ error });
       return null;
